@@ -1,9 +1,9 @@
 # movie_database
--terminal to directory 
--npm install express
--npm install mysl2
--run program on local using:
--node server.js
+<p>-terminal to directory<br>
+-npm install express<br>
+-npm install mysl2<br>
+-run program on local using:<br>
+-node server.js<br>
 
--Mysql database/schema is called movie_database
--user table is called users with username and password
+-Mysql database/schema is called movie_database<br>
+-user table is called users with username and password</p>
