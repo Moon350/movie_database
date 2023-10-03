@@ -1,0 +1,118 @@
+body {
+    margin: 0;
+    background: url(../images/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.s009 form .inner-form .advance-search {
+    background: #fff;
+    padding: 40px;
+    box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+    font-family: 'Barriecito', cursive;
+    font-size: 2em;
+}
+
+.s009 form .inner-form .advance-search h1{
+    background: #2e07996e;
+    text-align: center;
+}
+
+.s009 {
+    min-height: 100vh;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 15px;
+    font-family: 'Lato', sans-serif;
+    
+}
+
+.container {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100%;
+    text-align: center;
+}
+ 
+/*apply css properties to button tag*/
+ 
+button {
+    width: 90px;
+    height: 60px;
+    font-size: 30px;
+    background-color: rgb(84, 241, 84);
+    color: honeydew;
+}
+ 
+/*apply hover effect to button tag*/
+ 
+button:hover {
+    background-color: greenyellow;
+    color: grey;
+}
+ 
+/*apply css properties to h2 tag*/
+ 
+h2 {
+    color: black;
+    margin: 0 50px;
+    font-size: 45px;
+}
+
+input {
+    overflow: visible;
+    height: 3em;
+    width: 40em;
+    line-height: 1.15;
+    margin: 0;
+}
+
+h1.title {
+    text-align: center;
+}
+
+.rate {
+    text-align: center;
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+    
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+/* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
