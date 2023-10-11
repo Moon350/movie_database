@@ -9,7 +9,7 @@ const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'password',
-  database: 'movie_database'
+  database: 'movies'
 });
 
 db.connect(err => {
@@ -24,22 +24,27 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+app.get('/godotportal/request/movie', (req, res) => {
 
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'login.html'));
-});
+  var NUM_MOVIES = 4987556
+  console.log("Recieved Request")
+  db.query('SELECT * FROM movies_initial ORDER BY RAND() LIMIT 1', (error, results) =>{
+    if(error){
+      console.error("Movie doesn't exist!")
+      res.json({success: false})
+      return;
+    }
 
-app.get('/signup', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'signup.html'));
+    else{
+      res.json({success: true, data: results[0]})
+    }
+  })
 });
 
 app.post('/signup', (req, res) => {
   const { username, password, confirmPassword } = req.body;
 
-  db.query('SELECT * FROM users WHERE username = ?', [username], (error, results) => {
+  db.query('SELECT * FROM user WHERE username = ?', [username], (error, results) => {
     if (error) {
       console.error('Error querying the database:', error);
       res.status(500).json({ success: false, message: 'Server error' });
@@ -49,7 +54,7 @@ app.post('/signup', (req, res) => {
     if (results.length > 0) {
       res.status(400).json({ success: false, message: 'Username already exists' });
     } else {
-      db.query('INSERT INTO users (username, password) VALUES (?, ?)', [username, password], (error, results) => {
+      db.query('INSERT INTO user (username, password) VALUES (?, ?)', [username, password], (error, results) => {
         if (error) {
           console.error('Error inserting into the database:', error);
           res.status(500).json({ success: false, message: 'Server error' });
@@ -65,7 +70,7 @@ app.post('/signup', (req, res) => {
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
-  db.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], (error, results) => {
+  db.query('SELECT * FROM user WHERE username = ? AND password = ?', [username, password], (error, results) => {
     if (error) {
       console.error('Error querying the database:', error);
       res.status(500).json({ success: false, message: 'Server error' });
