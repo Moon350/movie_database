@@ -61,13 +61,13 @@
     <div class="container">
         <h2>Sign Up</h2>
         <div class="input-group">
-            <input type="text" placeholder="Username" id="username" required>
+            <input type="text" placeholder="Username" id="username" required minlength="7">
         </div>
         <div class="input-group">
-            <input type="password" placeholder="Password" id="password" required>
+            <input type="password" placeholder="Password" id="password" required minlength="7">
         </div>
         <div class="input-group">
-            <input type="password" placeholder="Confirm Password" id="confirmPassword" required>
+            <input type="password" placeholder="Confirm Password" id="confirmPassword" required minlength="7">
         </div>
         <button class="button" onclick="signup()">Sign Up</button>
         <a href="index.html" class="button">Back</a>
@@ -80,6 +80,21 @@
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
             var confirmPassword = document.getElementById("confirmPassword").value;
+            
+            if (password !== confirmPassword) {
+                document.getElementById('error-message').textContent = "Passwords do not match.";
+                return;
+            }
+            
+            if (username.length < 5) {
+                document.getElementById('error-message').textContent = "Username needs to 5 cahracters or more.";
+                return;
+            }
+
+            if (password.length < 7) {
+                document.getElementById('error-message').textContent = "Password needs to 7 cahracters or more.";
+                return;
+            }
 
             fetch('/signup', {
                 method: 'POST',
