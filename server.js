@@ -83,6 +83,44 @@ app.post('/login', (req, res) => {
   });
 });
 
+app.get('/search', (req, res) => {
+  const { title, genre } = req.query;
+
+  let titleQuery = '';
+  let genreQuery = '';
+
+  if (title) {
+    titleQuery = `title LIKE '%${title}%'`;
+  }
+
+  if (genre) {
+    if (titleQuery) {
+      // If a title is also provided, use "AND" to combine the title and genre conditions.
+      genreQuery = `AND genre LIKE '%${genre}%'`;
+    } else {
+      // If only the genre is provided, use it as the sole condition.
+      genreQuery = `genre LIKE '%${genre}%'`;
+    }
+  }
+  // const query = `SELECT * FROM movies_initial WHERE ${titleQuery}${titleQuery && genreQuery ? ' ' : ''}${genreQuery}`;
+  let query = `SELECT * FROM movies_initial`;
+  if(title || genre) {
+    query = `${query} WHERE ${titleQuery}${titleQuery && genreQuery ? ' ' : ''}${genreQuery}`;
+  }
+
+  try {
+    db.query(query, (err, results) => {
+      if (err) throw new Error(err);
+      console.log(query, results);
+      res.json({ 
+        success: true,
+        movies: results });
+    }); 
+  } catch (error) {
+    res.json({ success: false, message: error})
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

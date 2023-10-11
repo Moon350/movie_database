@@ -14,7 +14,7 @@ html {
  */
 body {
   margin: 0;
-  background: url(../images/background-image.jpg);
+  background: url(../images/background-image.jpg); 
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -1145,4 +1145,25 @@ legend {
   }
 }
 
+.result-title {
+  font-size: 20px;
+  text-align: center;
+  color: black;
+}
+
 /*# sourceMappingURL=Searchs_009.css.map */
+.row-result{
+  background-color: white;
+  border: 2px solid #000; /* You can change #000 to the color you prefer */
+  padding: 10px; /* Optional: Add padding to give some space around the content */
+  text-align: center;
+  height: 300px; /* You can adjust the height as needed */
+  overflow-y: scroll; /* Add a vertical scrollbar if content overflows */
+  border: 1px solid #ccc; /* Optional: Add a border for visual separation */
+}
+
+.result-item{
+  border-style:double;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}

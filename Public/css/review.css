@@ -115,4 +115,11 @@ h1.title {
 .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;
 }
+.group-btn{
+    text-align: center;
+}
+
+.btn-submit{
+    width: 150px;
+}
 /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
