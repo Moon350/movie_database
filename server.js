@@ -25,8 +25,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
 app.get('/godotportal/request/movie', (req, res) => {
-
-  var NUM_MOVIES = 4987556
   console.log("Recieved Request")
   db.query('SELECT * FROM movies_initial ORDER BY RAND() LIMIT 1', (error, results) =>{
     if(error){
@@ -42,7 +40,7 @@ app.get('/godotportal/request/movie', (req, res) => {
 });
 
 app.post('/signup', (req, res) => {
-  const { username, password, confirmPassword } = req.body;
+  const { username, password } = req.body;
 
   db.query('SELECT * FROM user WHERE username = ?', [username], (error, results) => {
     if (error) {
